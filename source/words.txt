@@ -1,0 +1,10 @@
+run
+escape
+jump
+faster
+street
+night
+left
+right
+forward
+flip

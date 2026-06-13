@@ -4,11 +4,18 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <fstream>
 
 void EncounterRoom::Enter(Player& player) {
-  std::vector<std::string> words = {"run",     "escape", "jump", "faster",
-                                    "street",  "night",  "left", "right",
-                                    "forward", "flip"};
+
+  std::vector<std::string> words;
+  std::ifstream file("words.txt");
+  std::string line;
+  while (std::getline(file, line)) {
+    if (!line.empty()) {
+      words.push_back(line);
+    }
+  }
 
   int distance = 20;
 

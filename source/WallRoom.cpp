@@ -1,15 +1,30 @@
 #include "WallRoom.h"
 
 #include <iostream>
+#include <fstream>
+#include <sstream>
 #include <string>
 #include <vector>
 
 Boots WallRoom::GenerateBoots() {
-  std::vector<Boots> boots_list = {
-      {"Time-Jump Sneakers", 15}, {"New Rocks", 18},
-      {"Street Runners", 20},     {"Pro-g Boost", 30},
-      {"Subway Sneakers", 40},    {"DIY E-streets", 67},
-  };
+
+  std::vector<Boots> boots_list;
+  std::ifstream file("boots.txt");
+  std::string line;
+
+  while (std::getline(file, line)) {
+    std::stringstream ss(line);
+
+    Boots boots;
+    std::string value;
+
+    std::getline(ss, boots.name, ';');
+    std::getline(ss, value);
+
+    boots.speed = std::stoi(value);
+
+    boots_list.push_back(boots);
+  }
 
   return boots_list[std::rand() % boots_list.size()];
 }
